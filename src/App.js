@@ -10,20 +10,16 @@ function App() {
     <div className="App">
       <Navbar className="nav" bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">GSSHOP</Navbar.Brand>
+          <Navbar.Brand href="#home">SANGJO HOMME</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#home">Lookbook</Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
+              <NavDropdown title="Online Shop" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">New</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Top</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Bottom</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
@@ -59,6 +55,7 @@ function Product(props) {
       <div className="imgdiv">
         <img src={props.params.src}></img>
         <img
+          className={like[props.idx] ? "like" : "unlike"}
           src="https://image.msscdn.net/skin/musinsa/images/icon_like_small_on.png"
           onClick={() => {
             let likeCopy = [...like];
