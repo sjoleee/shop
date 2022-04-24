@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+.background {
+  height: 50%;
+  padding: 200px 0px;
+  background-image: url("./img02.png");
+  background-size: cover;
+  color: black;
+}
+
+.col-md-4 img {
+  width: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
