@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./App.css";
 import Date from "./data.js";
+import Detail from "./Detail.js";
+
+import { Link, Route, Switch } from "react-router-dom";
 
 function App() {
   const [appearl, setAppearl] = useState(Date);
@@ -14,8 +17,12 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Lookbook</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link>
+                <Link to="/">Home</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/detail">Detail</Link>
+              </Nav.Link>
               <NavDropdown title="Online Shop" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">New</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Top</NavDropdown.Item>
@@ -29,17 +36,29 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="background">
-        <h1>SANGJO HOMME</h1>
-        <p>PARIS</p>
-      </div>
-      <div className="container2">
-        <div className="row">
-          {appearl.map((params, idx) => {
-            return <Product params={params} idx={idx} appearl={appearl} />;
-          })}
+      <Route exact path="/">
+        <div className="background">
+          <h1>SANGJO HOMME</h1>
+          <p>PARIS</p>
         </div>
-      </div>
+        <div className="container2">
+          <div className="row">
+            {appearl.map((params, idx) => {
+              return (
+                <Product
+                  params={params}
+                  idx={idx}
+                  appearl={appearl}
+                  key={idx}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </Route>
+      <Route path="/detail">
+        <Detail />
+      </Route>
     </div>
   );
 }
