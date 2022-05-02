@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./App.css";
-import Date from "./data.js";
+import Data from "./data.js";
 import Detail from "./Detail.js";
 
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
-  const [appearl, setAppearl] = useState(Date);
+  const [appearl, setAppearl] = useState(Data);
 
   return (
     <div className="App">
@@ -56,14 +56,15 @@ function App() {
           </div>
         </div>
       </Route>
-      <Route path="/detail">
-        <Detail />
+      <Route path="/detail/:id">
+        <Detail appearl={appearl} />
       </Route>
     </div>
   );
 }
 
 function Product(props) {
+  let history = useHistory();
   let likeArr = [];
   for (let x of props.appearl) {
     likeArr.push(false);
@@ -72,7 +73,12 @@ function Product(props) {
   return (
     <div className="col-md-4">
       <div className="imgdiv">
-        <img src={props.params.src}></img>
+        <img
+          src={props.params.src}
+          onClick={() => {
+            history.push(`/detail/${props.idx}`);
+          }}
+        ></img>
         <img
           className={like[props.idx] ? "like" : "unlike"}
           src="https://image.msscdn.net/skin/musinsa/images/icon_like_small_on.png"
