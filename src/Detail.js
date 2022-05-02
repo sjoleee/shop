@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
+import "./Detail.scss";
 
 const TitleBox = styled.div`
   font-size: 30px;
@@ -16,7 +17,8 @@ function Detail(props) {
 
   return (
     <div className="container">
-      <TitleBox>Detail</TitleBox>
+      <TitleBox className="red">Detail</TitleBox>
+      <div className="alert">재고가 얼마 남지 않았습니다.</div>
       <div className="row">
         <div className="col-md-6">
           <img src={selectedProduct.src} width="100%" alt="" />
