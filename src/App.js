@@ -70,13 +70,14 @@ function Product(props) {
     likeArr.push(false);
   }
   const [like, setLike] = useState(likeArr);
+  console.log(props.params.id);
   return (
     <div className="col-md-4">
       <div className="imgdiv">
         <img
           src={props.params.src}
           onClick={() => {
-            history.push(`/detail/${props.idx}`);
+            history.push(`/detail/${props.params.id}`);
           }}
         ></img>
         <img
