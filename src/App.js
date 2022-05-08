@@ -3,6 +3,7 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
+import axios from "axios";
 
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 
@@ -55,6 +56,7 @@ function App() {
             })}
           </div>
         </div>
+        <button>더보기</button>
       </Route>
       <Route path="/detail/:id">
         <Detail appearl={appearl} />

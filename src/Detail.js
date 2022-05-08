@@ -15,16 +15,24 @@ function Detail(props) {
     setTimeout(() => {
       setAlert(false);
     }, 2000);
-  });
+  }, [alert]);
   let { id } = useParams();
   let history = useHistory();
   let selectedProduct = props.appearl.find((i) => {
     return i.id == id;
   });
 
+  let [input, setInput] = useState("");
+
   return (
     <div className="container">
       <TitleBox className="red">Detail</TitleBox>
+      {input}
+      <input
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+      ></input>
       {alert === true ? (
         <div className="alert">재고가 얼마 남지 않았습니다.</div>
       ) : null}
