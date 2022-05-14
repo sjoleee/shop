@@ -28,9 +28,9 @@ function App() {
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/cart">
-                cart
+                Cart
               </Nav.Link>
-              <NavDropdown title="Online Shop" id="basic-nav-dropdown">
+              {/* <NavDropdown title="Online Shop" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">New</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Top</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Bottom</NavDropdown.Item>
@@ -38,7 +38,7 @@ function App() {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

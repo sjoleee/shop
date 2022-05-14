@@ -4,36 +4,26 @@ import { Table } from "react-bootstrap";
 function Cart() {
   return (
     <div>
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            {Array.from({ length: 12 }).map((_, index) => (
-              <th key={index}>Table heading</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            {Array.from({ length: 12 }).map((_, index) => (
-              <td key={index}>Table cell {index}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>2</td>
-            {Array.from({ length: 12 }).map((_, index) => (
-              <td key={index}>Table cell {index}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>3</td>
-            {Array.from({ length: 12 }).map((_, index) => (
-              <td key={index}>Table cell {index}</td>
-            ))}
-          </tr>
-        </tbody>
-      </Table>
+      <div>
+        <Table responsive="sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>상품명</th>
+              <th>수량</th>
+              <th>변경</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Table cell</td>
+              <td>Table cell</td>
+              <td>Table cell</td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 }
