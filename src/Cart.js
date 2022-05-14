@@ -1,7 +1,8 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { connect } from "react-redux";
 
-function Cart() {
+function Cart(props) {
   return (
     <div>
       <div>
@@ -17,7 +18,7 @@ function Cart() {
           <tbody>
             <tr>
               <td>1</td>
-              <td>Table cell</td>
+              <td>{props.state[0].title}</td>
               <td>Table cell</td>
               <td>Table cell</td>
             </tr>
@@ -28,4 +29,10 @@ function Cart() {
   );
 }
 
-export default Cart;
+function reduxSetting(state) {
+  return {
+    state: state,
+  };
+}
+
+export default connect(reduxSetting)(Cart);
