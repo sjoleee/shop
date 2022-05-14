@@ -7,8 +7,11 @@ import axios from "axios";
 
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 
+let contextStock = React.createContext();
+
 function App() {
   const [appearl, setAppearl] = useState(Data);
+  let [load, setLoad] = useState(true);
 
   return (
     <div className="App">
@@ -56,10 +59,24 @@ function App() {
             })}
           </div>
         </div>
-        <button>더보기</button>
+        {load === false ? <div>로딩중</div> : null}
+        <button
+          onClick={() => {
+            setLoad(false);
+            axios
+              .get("https://codingapple1.github.io/shop/data2.json")
+              .then((res) => {
+                setLoad(true);
+                setAppearl([...appearl, ...res.data]);
+              })
+              .catch(() => {});
+          }}
+        >
+          더보기
+        </button>
       </Route>
       <Route path="/detail/:id">
-        <Detail appearl={appearl} />
+        <Detail appearl={appearl} setAppearl={setAppearl} />
       </Route>
     </div>
   );
@@ -96,6 +113,7 @@ function Product(props) {
       <p className="content">{props.params.content}</p>
       <p className="title">{props.params.title}</p>
       <p className="price">{props.params.price}</p>
+      <p className="stock">{props.params.stock}</p>
     </div>
   );
 }

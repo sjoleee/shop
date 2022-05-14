@@ -5,6 +5,7 @@ export default [
     content: "상조옴므",
     price: "48,000원",
     src: "https://image.msscdn.net/images/goods_img/20220419/2499333/2499333_1_500.jpg",
+    stock: 1,
   },
 
   {
@@ -13,6 +14,7 @@ export default [
     content: "상조옴므",
     price: "68,000원",
     src: "https://image.msscdn.net/images/goods_img/20220419/2499224/2499224_2_500.jpg",
+    stock: "12",
   },
 
   {
@@ -21,6 +23,7 @@ export default [
     content: "상조옴므",
     price: "78,000원",
     src: "https://image.msscdn.net/images/goods_img/20220419/2499306/2499306_1_500.jpg",
+    stock: "11",
   },
   {
     id: 3333333,
@@ -28,6 +31,7 @@ export default [
     content: "상조옴므",
     price: "168,000원",
     src: "https://image.msscdn.net/images/goods_img/20220419/2499361/2499361_1_500.jpg",
+    stock: "7",
   },
 
   {
@@ -36,6 +40,7 @@ export default [
     content: "상조옴므",
     price: "258,000원",
     src: "https://image.msscdn.net/images/goods_img/20220210/2351608/2351608_1_500.jpg",
+    stock: "1",
   },
   {
     id: 5333333,
@@ -43,5 +48,6 @@ export default [
     content: "상조옴므",
     price: "58,000원",
     src: "https://image.msscdn.net/images/goods_img/20220210/2351231/2351231_1_500.jpg",
+    stock: 79,
   },
 ];
