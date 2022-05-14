@@ -4,6 +4,7 @@ import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
 import axios from "axios";
+import Cart from "./Cart.js";
 
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 
@@ -17,15 +18,17 @@ function App() {
     <div className="App">
       <Navbar className="nav" bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">SANGJO HOMME</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            SANGJO HOMME
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/detail">
-                Detail
+              <Nav.Link as={Link} to="/cart">
+                cart
               </Nav.Link>
               <NavDropdown title="Online Shop" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">New</NavDropdown.Item>
@@ -77,6 +80,9 @@ function App() {
       </Route>
       <Route path="/detail/:id">
         <Detail appearl={appearl} setAppearl={setAppearl} />
+      </Route>
+      <Route path="/cart">
+        <Cart />
       </Route>
     </div>
   );

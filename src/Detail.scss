@@ -12,3 +12,19 @@ $redred: #ff0000;
   width: 100%;
   margin: auto;
 }
+
+.wow-enter {
+  font-size: 10px;
+  opacity: 0;
+}
+.wow-enter-active {
+  font-size: 50px;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

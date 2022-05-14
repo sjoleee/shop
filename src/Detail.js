@@ -3,6 +3,7 @@ import { Nav } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
+import { CSSTransition } from "react-transition-group";
 
 const TitleBox = styled.div`
   font-size: 30px;
@@ -12,6 +13,7 @@ const TitleBox = styled.div`
 function Detail(props) {
   let [isStockAlertOpen, setIsStockAlertOpen] = useState(true);
   let [selectedTab, setSelectedTab] = useState(0);
+  let [isTabAnimationWork, setIsTabAnimationWork] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,23 +50,25 @@ function Detail(props) {
           <h4 className="pt-5">{selectedProduct.title}</h4>
           <p>{selectedProduct.content}</p>
           <p>{selectedProduct.price}</p>
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              alert(`주문이 완료되었습니다. 재고 : ${currentStock - 1}`);
-              setCurrentStock(currentStock - 1);
-            }}
-          >
-            주문하기
-          </button>
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              history.goBack();
-            }}
-          >
-            뒤로가기
-          </button>
+          <div className="btn-wrapper">
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                alert(`주문이 완료되었습니다. 재고 : ${currentStock - 1}`);
+                setCurrentStock(currentStock - 1);
+              }}
+            >
+              주문하기
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                history.goBack();
+              }}
+            >
+              뒤로가기
+            </button>
+          </div>
         </div>
       </div>
 
@@ -73,7 +77,11 @@ function Detail(props) {
           <Nav.Link
             eventKey="link-0"
             onClick={() => {
+              setIsTabAnimationWork(true);
               setSelectedTab(0);
+              setTimeout(() => {
+                setIsTabAnimationWork(false);
+              }, 1000);
             }}
           >
             상세정보
@@ -83,7 +91,11 @@ function Detail(props) {
           <Nav.Link
             eventKey="link-1"
             onClick={() => {
+              setIsTabAnimationWork(true);
               setSelectedTab(1);
+              setTimeout(() => {
+                setIsTabAnimationWork(false);
+              }, 1000);
             }}
           >
             리뷰
@@ -93,20 +105,26 @@ function Detail(props) {
           <Nav.Link
             eventKey="link-2"
             onClick={() => {
+              setIsTabAnimationWork(true);
               setSelectedTab(2);
+              setTimeout(() => {
+                setIsTabAnimationWork(false);
+              }, 1000);
             }}
           >
             문의사항
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      {selectedTab === 0 ? (
-        <div>1번</div>
-      ) : selectedTab === 1 ? (
-        <div>2번</div>
-      ) : (
-        <div>3번</div>
-      )}
+      <CSSTransition in={isTabAnimationWork} classNames="wow" timeout={1000}>
+        {selectedTab === 0 ? (
+          <div>1번</div>
+        ) : selectedTab === 1 ? (
+          <div>2번</div>
+        ) : (
+          <div>3번</div>
+        )}
+      </CSSTransition>
     </div>
   );
 }
