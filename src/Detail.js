@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
 
 const TitleBox = styled.div`
   font-size: 30px;
@@ -54,7 +55,17 @@ function Detail(props) {
             <button
               className="btn btn-danger"
               onClick={() => {
-                alert(`주문이 완료되었습니다. 재고 : ${currentStock - 1}`);
+                props.dispatch({
+                  type: "orderClicked",
+                  payload: {
+                    id: selectedProduct.id,
+                    title: selectedProduct.title,
+                    stock: selectedProduct.stock,
+                    price: selectedProduct.price,
+                  },
+                });
+                history.push("/cart");
+                alert(`장바구니에 추가되었습니다. 재고 : ${currentStock - 1}`);
                 setCurrentStock(currentStock - 1);
               }}
             >
@@ -134,4 +145,10 @@ function Stocks(props) {
   return <p>재고가 {props.currentStock}개 남았습니다.</p>;
 }
 
-export default Detail;
+function reduxSetting(state) {
+  return {
+    state: state.reducer,
+  };
+}
+
+export default connect(reduxSetting)(Detail);

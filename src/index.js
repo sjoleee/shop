@@ -8,6 +8,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 
+let originalState = [
+  { id: 6789, title: "sangjo", stock: "3" },
+  { id: 6790, title: "sangj222o", stock: "5" },
+];
+
 function reducer2(isDiscountOpen = true, action) {
   if (action.type === "close") {
     return false;
@@ -16,23 +21,37 @@ function reducer2(isDiscountOpen = true, action) {
   }
 }
 
-let originalState = [
-  { id: 6789, title: "sangjo", stock: "3" },
-  { id: 6789, title: "sangj222o", stock: "5" },
-];
+const isInCart = (state, currentProductId) => {
+  for (let i = 0; i < state.length; i++) {
+    if (state[i].id === currentProductId) {
+      let num = i;
+      return num;
+    }
+  }
+  return null;
+};
 
 function reducer(state = originalState, action) {
-  if (action.type === "increase") {
+  if (action.type === "orderClicked") {
+    if (isInCart(state, action.payload.id) !== null) {
+      let increasedState = [...state];
+      increasedState[isInCart(state, action.payload.id)].stock++;
+      return increasedState;
+    }
+    let addedState = [...state];
+    addedState.push(action.payload);
+    return addedState;
+  } else if (action.type === "increase") {
     let increasedState = [...state];
-    increasedState[0].stock++;
+    increasedState[action.payload].stock++;
     return increasedState;
   } else if (action.type === "decrease") {
-    if (state[0].stock <= 0) {
+    if (state[action.payload].stock <= 0) {
       alert("수량을 줄일 수 없습니다.");
       return state;
     } else {
       let decreasedState = [...state];
-      decreasedState[0].stock--;
+      decreasedState[action.payload].stock--;
       return decreasedState;
     }
   } else {
