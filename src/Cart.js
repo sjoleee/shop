@@ -16,12 +16,31 @@ function Cart(props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>{props.state[0].title}</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
+            {props.state.map((params, idx) => {
+              return (
+                <tr>
+                  <td>{idx + 1}</td>
+                  <td>{params.title}</td>
+                  <td>{params.stock}</td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        props.dispatch({ type: "decrease" });
+                      }}
+                    >
+                      -
+                    </button>
+                    <button
+                      onClick={() => {
+                        props.dispatch({ type: "increase" });
+                      }}
+                    >
+                      +
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </div>

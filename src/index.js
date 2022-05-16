@@ -8,9 +8,26 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 
-let store = createStore(() => {
-  return [{ id: 6789, title: "sangjo" }];
-});
+let originalState = [
+  { id: 6789, title: "sangjo", stock: "3" },
+  { id: 6789, title: "sangj222o", stock: "5" },
+];
+
+function reducer(state = originalState, action) {
+  if (action.type === "increase") {
+    let increasedState = [...state];
+    increasedState[0].stock++;
+    return increasedState;
+  } else if (action.type === "decrease") {
+    let decreasedState = [...state];
+    decreasedState[0].stock--;
+    return decreasedState;
+  } else {
+    return originalState;
+  }
+}
+
+let store = createStore(reducer);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
