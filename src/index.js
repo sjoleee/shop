@@ -8,10 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 
-let originalState = [
-  { id: 6789, title: "sangjo", stock: "3" },
-  { id: 6790, title: "sangj222o", stock: "5" },
-];
+let originalState = [];
 
 function reducer2(isDiscountOpen = true, action) {
   if (action.type === "close") {
