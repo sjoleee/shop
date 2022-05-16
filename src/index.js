@@ -6,7 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
+
+function reducer2(isDiscountOpen = true, action) {
+  if (action.type === "close") {
+    return false;
+  } else {
+    return isDiscountOpen;
+  }
+}
 
 let originalState = [
   { id: 6789, title: "sangjo", stock: "3" },
@@ -19,15 +27,20 @@ function reducer(state = originalState, action) {
     increasedState[0].stock++;
     return increasedState;
   } else if (action.type === "decrease") {
-    let decreasedState = [...state];
-    decreasedState[0].stock--;
-    return decreasedState;
+    if (state[0].stock <= 0) {
+      alert("수량을 줄일 수 없습니다.");
+      return state;
+    } else {
+      let decreasedState = [...state];
+      decreasedState[0].stock--;
+      return decreasedState;
+    }
   } else {
     return originalState;
   }
 }
 
-let store = createStore(reducer);
+let store = createStore(combineReducers({ reducer, reducer2 }));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,12 +1,13 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
+import "./Cart.css";
 
 function Cart(props) {
   return (
     <div>
       <div>
-        <Table responsive="sm">
+        <Table className="table" responsive="sm">
           <thead>
             <tr>
               <th>#</th>
@@ -44,13 +45,28 @@ function Cart(props) {
           </tbody>
         </Table>
       </div>
+      <div className="alert-wrapper">
+        {props.isDiscountOpen === true ? (
+          <div className="discount-alert">
+            <p>지금 구매하시면 맥북을 드립니다.</p>
+            <button
+              onClick={() => {
+                props.dispatch({ type: "close" });
+              }}
+            >
+              닫기
+            </button>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
 
 function reduxSetting(state) {
   return {
-    state: state,
+    state: state.reducer,
+    isDiscountOpen: state.reducer2,
   };
 }
 
