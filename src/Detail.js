@@ -30,6 +30,21 @@ function Detail(props) {
   const [currentStock, setCurrentStock] = useState(selectedProduct.stock);
   let [input, setInput] = useState("");
 
+  let loadSeenItem = () => {
+    localStorage.getItem("seenItem");
+  };
+  let setFirstSeenItem = () => {
+    localStorage.setItem("seenItem", JSON.stringify([selectedProduct.id]));
+  };
+  let setNotFirstSeenItem = () => {
+    let seenItemArr = JSON.parse(localStorage.getItem("seenItem"));
+
+    seenItemArr.push(selectedProduct.id);
+    localStorage.setItem("seenItem", JSON.stringify(seenItemArr));
+  };
+
+  loadSeenItem() === "null" ? setFirstSeenItem() : setNotFirstSeenItem();
+
   return (
     <div className="container">
       <TitleBox className="red">Detail</TitleBox>
@@ -141,7 +156,6 @@ function Detail(props) {
 }
 
 function Stocks(props) {
-  console.log(props.appearl);
   return <p>재고가 {props.currentStock}개 남았습니다.</p>;
 }
 

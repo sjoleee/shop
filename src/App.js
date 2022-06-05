@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./App.css";
 import Data from "./data.js";
-import Detail from "./Detail.js";
 import axios from "axios";
 import Cart from "./Cart.js";
 
 import { Link, Route, Switch, useHistory } from "react-router-dom";
+
+let Detail = lazy(() => {
+  return import("./Detail.js");
+});
 
 let contextStock = React.createContext();
 
@@ -79,7 +82,9 @@ function App() {
         </button>
       </Route>
       <Route path="/detail/:id">
-        <Detail appearl={appearl} setAppearl={setAppearl} />
+        <Suspense fallback={<div>loading...</div>}>
+          <Detail appearl={appearl} setAppearl={setAppearl} />
+        </Suspense>
       </Route>
       <Route path="/cart">
         <Cart />
